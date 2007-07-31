@@ -1,0 +1,860 @@
+@charset "UTF-8";
+
+/* 
+ * Style sheet for master's thesis
+ * Written by Henri Sivonen
+ *
+ * The author has placed this style sheet in the Public Domain. 
+ * Where that is not legally possible, the author grants everyone a perpetual, 
+ * royalty-free, world-wide license to treat this style sheet as if it were in 
+ * the Public Domain. There is absolutely no warranty, and the author disclaims 
+ * all liability for anything.
+ *
+ * The document appearance that this style sheet yields was inspired by a 
+ * traditional LaTeX template that has circulated at Helsinki University of 
+ * Technology. It appears that the template was originated by Petra 
+ * Pietiläinen (http://users.tkk.fi/~ppietila/dippa/pohja/), was modified by 
+ * Mikko Hämäläinen (http://www.niksula.hut.fi/~mthamala/thesis/template/), 
+ * was modified by Mikko Korpela and was given to Yrjö Kari-Koskinen who 
+ * integrated the abstract pages from Oskar Ojala's template and gave me the 
+ * resulting template. The appearance produced by the LaTeX template is 
+ * primarily due to the "book" and "mathpazo" packages. This style sheet 
+ * does not include any code from the LaTeX template. The measurements have 
+ * been reverse engineered by measuring output from pdfLaTeX.
+ *
+ * Some class names and CSS techniques are inspired by the boom! style sheet 
+ * by Håkon Wium Lie and Bert Bos 
+ * (http://people.opera.com/howcome/2005/ala/boom.css).
+ * 
+ * For the screen media, this style sheet is expected to work with Firefox 3.0 
+ * (nightly builds at the time of writing), Opera 9 and the next major 
+ * release of Safari after 2.0 (nightly builds at the time of writing). It is 
+ * expected to degrade more or less gracefully in legacy browsers.
+ *
+ * For the print media, this style sheet is expected to work with Prince 6.0 
+ * (in alpha at the time of writing). The print media features of this style 
+ * sheet depend on Prince-specific prince-* properties.
+ * 
+ * This style sheet has been written with the expectation that the following 
+ * fonts are available: Palatino (copy), Courier (code) and Electra LT 
+ * Regular (HUT logo).
+ */
+
+* {
+  background: none;
+  border: none;
+  font: inherit;
+  font-size: inherit;
+  margin: 0 0 0 0;
+  padding: 0 0 0 0;
+}
+abbr {
+  text-decoration: none;
+  text-underline-style: none;
+  border: none;
+}
+html, text {
+  font-family: Palatino, Palladio, serif;
+}
+body {
+  padding: 3em;
+}
+@media print {
+html {
+  font-size: 11pt;
+  color: black;
+/*  color: cmyk(0%, 0%, 0%, 100%); */
+}
+body {
+  padding: 0;
+}
+}
+/* HUT logo */
+.hut-logo {
+  color: #7c7a7a;
+  font-family: "Electra LT Regular", "Electra LH", "Electra", "Times", "Times New Roman", serif;
+  text-align: left;
+  font-size: 10pt;
+  letter-spacing: 0.025em;
+  line-height: 1.4;
+  padding-top: 5.1554em;
+}
+.hut-logo-base {
+  fill: #0041ad;
+}
+.hut-logo-wing {
+  fill: #7c7a7a;
+}
+@media print {
+.hut-logo {
+  color: black;
+/*  color: cmyk(0%, 0%, 0%, 100%); */
+}
+.hut-logo-base {
+  fill: black;
+/*  fill: cmyk(0%, 0%, 0%, 100%); */
+}
+.hut-logo-wing {
+  fill: black;
+/*  fill: cmyk(0%, 0%, 0%, 100%); */
+}
+}
+.hut-wing {
+  float: left;
+  margin-right: 0.75em;
+  margin-top: -5.1554em;
+  margin-bottom: 5em;
+  width: 4.65em;
+  height: 6.2em;
+}
+.hut-logo span {
+  text-transform: uppercase;
+}
+/* Cover */
+@media print {
+.cover {
+  font-size: 12pt;
+}
+.cover .bottom {
+  position: absolute;
+  bottom: 0;
+}
+.cover .masthead {
+  position: absolute;
+  bottom: 10.3cm;
+}
+}
+.cover {
+  page-break-after: always;
+  page: cover;
+}
+.cover p {
+  text-indent: 0;
+}
+.cover .author {
+  font-weight: bold;
+  font-size: 1.167em;
+  margin-top: 3em;
+}
+.cover .date {
+  margin-top: 2em;
+}
+.cover .supervisor {
+  margin-top: 3em;
+}
+.cover .bottom {
+  margin-top: 3em;
+}
+h1 {
+  string-set: title content();
+  font-size: 2.0667em;
+  font-weight: bold;
+  margin-top: 1em;
+  prince-bookmark-level: none;
+}
+/* Imprint */
+.imprint {
+  page-break-after: always;
+  page-break-before: always;
+  page: frontmatter;
+}
+.legal {
+  font-size: 0.75em;
+}
+.copyright {
+  margin-top: 3em;
+  margin-bottom: 1.5em;
+  text-align: left;
+  text-indent: 0;
+}
+.availability {
+  margin-top: 1.5em;
+  margin-bottom: 3em;
+  text-align: left;
+  text-indent: 0;
+}
+.cc-badge {
+  float: right;
+  margin-left: 1.5em;
+  margin-bottom: 1.0em;
+}
+@media print {
+.imprint-inner {
+  position: absolute;
+  bottom: 0;
+}
+}
+/* Abstract */
+table {
+  border-collapse: collapse;
+  table-layout: fixed;
+  width: 100%;
+}
+tbody {
+  border: thin solid black;
+/*  border-color: cmyk(0%, 0%, 0%, 100%); */
+  border-top: double;
+}
+tbody:first-child {
+  border-top: thin solid;
+}
+th {
+  text-align: left;
+  vertical-align: top;
+  font-weight: bold;
+}
+th, td {
+  padding: 0.1em 0.3em 0.1em 0.3em;
+}
+.abstract tr.author {
+  border-bottom: thin solid black;
+/*  border-color: cmyk(0%, 0%, 0%, 100%); */
+}
+.abstract th {
+  width: 9em;
+}
+.abstract {
+  page-break-before: always;
+  page-break-after: always;
+  margin-bottom: 2em;
+  margin-top: 2em;
+  page: abstract;
+}
+.abstract:lang(fi) {
+  page: abstractfi;
+}
+/* TOC */
+div.toc {
+  page: toc; 
+}
+div.toc h2 {
+  page-break-before: always;
+  page: toc;
+}
+ul.toc {
+  margin-left: 0em;
+  padding-left: 0em;
+  list-style-type: none;
+  font-weight: bold;
+  counter-reset: tocitem;
+  margin-bottom: 0;
+}
+ul.toc ul {
+  margin-left: 3em;
+  padding-left: 0em;
+  list-style-type: none;
+  font-weight: normal;
+  counter-reset: tocitem;
+  margin-bottom: 0;
+}
+ul.toc > li {
+  margin-bottom: 1em;
+}
+ul.toc li {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+ul.toc li::before {
+  content: counters(tocitem, ".") "\00A0"; 
+  counter-increment: tocitem;
+  width: 3em;
+  display: inline-block;
+}
+ul.toc li.nonumber::before {
+  display: none;
+}
+@media print {
+ul.toc a::after { 
+  content: leader(' . ') target-counter(attr(href), page); 
+}
+ul.toc > li > a::after { 
+  content: leader('') target-counter(attr(href), page); 
+}
+/* Glossary */
+div.glossary {
+  page: glossary; 
+}
+div.glossary h2 {
+  page-break-before: always;
+  page: glossary;
+}
+
+dl.glossary > dt > a::after { 
+  content: leader('') target-counter(attr(href), page); 
+}
+}
+dl.glossary dd {
+  margin-right: 1.5em;
+}
+dl.glossary p {
+  text-align: left;
+}
+/* Acknowledgements */
+div.acknowledgements h2 {
+  page-break-before: always;
+  page: frontmatter auto;
+}
+div.acknowledgements .signature {
+  margin-top: 1.5em;
+}
+div.acknowledgements .signature p {
+  text-indent: 0;
+}
+/* Bibliography */
+dl.references {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+dl.references dd {
+  margin-bottom: 0.5em;
+}
+dl.references .urlwrap {
+  display: block;
+  prince-hyphenate: none;
+}
+/* Common definitions */
+p {
+  text-indent: 1.5em;
+  text-align: justify;
+  prince-hyphenate: auto;
+}
+:lang(fi) { 
+  prince-hyphenate-patterns: url("hyph_fi_FI.dic");
+}
+h1 + p, h2 + p, h3 + p, h4 + p, h5 + p, h6 + p, pre + p, ul + p, dl + p, div + p, p:first-child {
+  text-indent: 0;
+}
+pre, dl {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+dt {
+  page-break-after: avoid;
+}
+dd {
+  page-break-before: avoid;
+  page-break-inside: avoid;
+  margin-left: 1.5em;
+}
+em, i, var, cite {
+  font-style: italic;
+}
+code {
+  font-family: Courier, Courier New, monospace;
+  prince-hyphenate: none;
+  prince-linebreak-magic: auto;
+}
+ul {
+  margin-left: 1.5em;
+  padding-left: 0;
+  margin-bottom: 0.5em;
+}
+li {
+  margin-top: 0.3em;
+  margin-bottom: 0.3em;
+}
+.url {
+  prince-linebreak-magic: auto;
+  prince-hyphenate: none;
+}
+@media print {
+a[href], :link {
+    color: black;
+/*    color: cmyk(0%, 0%, 0%, 100%); */
+    text-decoration: none;
+}
+a[href^="#"]::after { 
+  content: " (page " target-counter(attr(href), page) ")"; 
+  font-style: normal;
+}
+a[href^="#ref-"]::after { 
+  display: none;
+}
+}
+h2::before {
+  display: block;
+  content: "Chapter " counter(chapter);
+  margin-bottom: 0.8em;
+}
+h2 {
+  font-weight: bold;
+  font-size: 2.0667em;
+  margin-bottom: 1.55em;
+  padding-top: 3em;
+  counter-increment: chapter;
+  counter-reset: section;
+  string-set: header "Chapter " counter(chapter) ". " content();
+  page-break-before: right;
+  page: chapterstart auto;
+  prince-bookmark-level: 1;
+}
+h2.pagerestart {
+  counter-reset: page 1;
+}
+h2.nonumber::before {
+  display: none;
+}
+h2.nonumber {
+  counter-increment: none;
+  string-set: header content();
+}
+h3::before {
+  display: inline-block;
+  width: 2.2em;
+  content: counter(chapter) "." counter(section) "\00A0";
+}
+h3 {
+  font-weight: bold;
+  font-size: 1.4333em;
+  margin-top: 1.35em;
+  margin-bottom: 0.65em;
+  counter-increment: section;
+  counter-reset: subsection;
+  prince-bookmark-level: 2;
+}
+h4::before {
+  display: inline-block;
+  width: 3.2em;
+  content: counter(chapter) "." counter(section) "." counter(subsection) "\00A0";
+}
+h4 {
+  font-weight: bold;
+  font-size: 1.2em;
+  margin-bottom: 0.55em;
+  margin-top: 1.35em;
+  counter-increment: subsection;
+  counter-reset: subsubsection;
+  prince-bookmark-level: 3;
+}
+/*
+h5::before {
+  display: inline-block;
+  width: 4.2em;
+  content: counter(chapter) "." counter(section) "." counter(subsection) "." counter(subsubsection) "\00A0"; 
+}
+h5 {
+  font-weight: bold;
+  margin-bottom: 0.55em;
+  margin-top: 1.35em;
+  counter-increment: subsubsection;
+  prince-bookmark-level: 4;
+}
+h6 {
+  font-weight: bold;
+  color: red;
+  margin-bottom: 0.55em;
+  margin-top: 1.35em;
+  prince-bookmark-level: 5;
+}
+*/
+h5::after {
+  content: ". ";
+}
+h5 {
+  display: run-in;
+  font-weight: bold;
+  margin-top: 1.0em;
+  prince-bookmark-level: 4; 
+}
+h5 + p {
+  margin-top: 1.0em;
+}
+
+h3 + h4 {
+  margin-top: 0.88em;
+}
+/* Pages */
+@page {
+  size: A4;
+  margin: 4.15cm 2.7cm 4.5cm 2.7cm;
+  counter-increment: page;
+  font-family: Palatino, Palladio, serif;
+  font-size: 11pt;
+}
+@page:left {
+  margin-right: 3.9cm;
+@top-right {
+  content: string(title, first);
+  vertical-align: bottom;
+  padding-bottom: 18pt;
+  text-transform: uppercase;
+  font-style: italic;
+  text-align: right;
+}
+@top-left {
+  content: counter(page);
+  vertical-align: bottom;
+  padding-bottom: 18pt;
+  text-align: left;
+}
+}
+@page:right {
+  margin-left: 3.9cm;
+@top-left {
+  content: string(header, first);
+  vertical-align: bottom;
+  padding-bottom: 18pt;
+  text-transform: uppercase;
+  font-style: italic;
+  text-align: left;
+}
+@top-right {
+  content: counter(page);
+  vertical-align: bottom;
+  padding-bottom: 18pt;
+  text-align: right;
+}
+}
+@page cover {
+@top-right {
+  content: none;
+  vertical-align: bottom;
+  padding-bottom: 18pt;
+  text-align: right;
+}  
+}
+@page frontmatter {
+@top-right {
+  content: none;
+  padding-bottom: 18pt;
+}
+@top-left {
+  content: none;
+  padding-bottom: 18pt;
+}
+@bottom-center {
+    content: counter(page, lower-roman);
+    text-align: center;
+    vertical-align: top;
+    padding-top: 2em;
+}
+}
+@page abstract {
+@top-right {
+  content:  "ABSTRACT OF MASTER’S THESIS";
+  vertical-align: bottom;
+  padding-bottom: 18pt;
+  text-align: right;
+  text-transform: uppercase;
+  font-style: normal;
+  font-size: 10pt;
+}
+@top-left {
+  content: "HELSINKI UNIVERSITY OF TECHNOLOGY";
+  vertical-align: bottom;
+  padding-bottom: 18pt;
+  text-transform: uppercase;
+  font-style: normal;
+  text-align: left;
+  font-size: 10pt;
+}
+@bottom-center {
+    content: counter(page, lower-roman);
+    text-align: center;
+    vertical-align: top;
+    padding-top: 2em;
+}
+}
+@page abstractfi {
+@top-right {
+  content:  "DIPLOMITYÖN TIIVISTELMÄ";
+  vertical-align: bottom;
+  padding-bottom: 18pt;
+  text-align: right;
+  text-transform: uppercase;
+  font-style: normal;
+  font-size: 10pt;
+}
+@top-left {
+  content: "TEKNILLINEN KORKEAKOULU";
+  vertical-align: bottom;
+  padding-bottom: 18pt;
+  text-transform: uppercase;
+  font-style: normal;
+  text-align: left;
+  font-size: 10pt;
+}
+@bottom-center {
+    content: counter(page, lower-roman);
+    text-align: center;
+    vertical-align: top;
+    padding-top: 2em;
+}
+}
+@page chapterstart {
+@top-right {
+  content: none;
+  vertical-align: bottom;
+  padding-bottom: 18pt;
+  text-align: right;
+}
+@top-left {
+  content: none;
+  vertical-align: bottom;
+  padding-bottom: 18pt;
+  text-transform: uppercase;
+  font-style: italic;
+  text-align: left;
+}
+@bottom-center {
+    content: counter(page);
+    text-align: center;
+    vertical-align: top;
+    padding-top: 2em;
+}
+}
+@page chapterstart :blank {
+@top-right {
+  content: none;
+}
+@top-left {
+  content: none;
+}
+@bottom-center {
+  content: none;
+}
+}
+@page toc :left {
+@top-right {
+  content: string(title, first);
+  vertical-align: bottom;
+  padding-bottom: 18pt;
+  text-transform: uppercase;
+  font-style: italic;
+  text-align: right;
+}
+@top-left {
+  content: counter(page, lower-roman);
+  vertical-align: bottom;
+  padding-bottom: 18pt;
+  text-align: left;
+}
+}
+@page toc :right {
+@top-left {
+  content: string(header, first);
+  vertical-align: bottom;
+  padding-bottom: 18pt;
+  text-transform: uppercase;
+  font-style: italic;
+  text-align: left;
+}
+@top-right {
+  content: counter(page, lower-roman);
+  vertical-align: bottom;
+  padding-bottom: 18pt;
+  text-align: right;
+}
+}
+@page toc :first {
+@top-left {
+  content: none;
+  padding-bottom: 18pt;
+}
+@top-right {
+  content: none;
+  padding-bottom: 18pt;
+}
+@bottom-center {
+    content: counter(page, lower-roman);
+    text-align: center;
+    vertical-align: top;
+    padding-top: 2em;
+}
+}
+@page glossary :left {
+@top-right {
+  content: string(title, first);
+  vertical-align: bottom;
+  padding-bottom: 18pt;
+  text-transform: uppercase;
+  font-style: italic;
+  text-align: right;
+}
+@top-left {
+  content: counter(page, lower-roman);
+  vertical-align: bottom;
+  padding-bottom: 18pt;
+  text-align: left;
+}
+}
+@page glossary :right {
+@top-left {
+  content: string(header, first);
+  vertical-align: bottom;
+  padding-bottom: 18pt;
+  text-transform: uppercase;
+  font-style: italic;
+  text-align: left;
+}
+@top-right {
+  content: counter(page, lower-roman);
+  vertical-align: bottom;
+  padding-bottom: 18pt;
+  text-align: right;
+}
+}
+@page glossary :first {
+@top-left {
+  content: none;
+  padding-bottom: 18pt;
+}
+@top-right {
+  content: none;
+  padding-bottom: 18pt;
+}
+@bottom-center {
+    content: counter(page, lower-roman);
+    text-align: center;
+    vertical-align: top;
+    padding-top: 2em;
+}
+}
+/* LaTeX */
+.latex-space {
+  letter-spacing: 0.35em;
+}
+.tex {
+  letter-spacing: -0.125em;
+}
+.latex-l {
+  letter-spacing: -0.35em;
+}
+.tex-e {
+  text-transform: uppercase;
+  vertical-align: -0.25em;
+  line-height: 0; /* thanks to Boris Zbarsky */  
+}
+.latex-a {
+  text-transform: uppercase;
+  font-size: 0.72em;
+  vertical-align: 0.24em;
+}
+.bibtex-ib {
+  font-variant: small-caps;
+}
+
+/* Code Appendix */
+@media print {
+pre.appendix {
+  font-size: 0.70em;
+}
+}
+
+/* Figures */
+text {
+  font-weight: bold;
+}
+text.linelabel {
+  font-weight: normal;
+}
+
+/* Gecko bug wrapper */
+div.figure > div {
+  width: 100%;
+}
+/* caption */
+div.figure > p {
+  width: 100%;
+  font-weight: bold;
+  text-indent: 0;
+  margin-top: 0.75em;
+  text-align: center;
+  font-size: 0.85em;
+  counter-increment: figure;
+  page-break-before: avoid;
+}
+div.figure > p::before {
+  content: "Figure " counter(figure) ": "
+}
+
+
+/* Document Tree 342 557 */
+#fig-document-tree {
+  float: right;
+  width: 12.16em;
+  margin-top: 0.732em;
+  max-width: 50%;
+}
+#fig-document-tree > div {
+  height: 19.8em;
+}
+@media print {
+#fig-document-tree {
+  float: none;
+  position: absolute;
+  right: 0;
+}
+}
+/* Work around Gecko bug with em-sized SVG */
+#fig-document-tree > div > svg, #fig-document-tree > div > img {
+  width: 100%;
+  height: 100%;
+}
+/* Work around the Gecko workaround in Prince */
+@media print {
+#fig-document-tree > div > svg, #fig-document-tree > div > img {
+  height: 19.8em;
+}
+}
+
+
+/* Front End 452 1112 */
+#fig-front-end {
+  float: right; 
+  margin-left: 1.5em;
+  width: 14.928em; 
+  max-width: 50%;
+}
+#fig-front-end > div {
+  height: 36.725em;
+}
+/* Work around Gecko bug with em-sized SVG */
+#fig-front-end > div > svg, #fig-front-end > div > img {
+  width: 100%;
+  height: 100%;
+}
+/* Work around the Gecko workaround in Prince */
+@media print {
+#fig-front-end > div > svg, #fig-front-end > div > img {
+  height: 36.725em;
+}
+}
+
+/* Back End 1067 322 */
+#fig-back-end {
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+  margin-left: auto;
+  margin-right: auto;
+  width: 37.113em; 
+  max-width: 100%;
+}
+#fig-back-end > div {
+  height: 11.2em;
+}
+/* Work around Gecko bug with em-sized SVG */
+#fig-back-end > div > svg, #fig-back-end > div > img {
+  width: 100%;
+  height: 100%;
+}
+/* Work around the Gecko workaround in Prince */
+@media print {
+#fig-back-end > div > svg, #fig-back-end > div > img {
+  height: 11.2em;
+}
+}
+
+
+
+/* Optional rules for drafts */
+
+.legal, .mastersthesis {
+  text-decoration: line-through;
+}
+
+@media screen {
+p {
+  line-height: 1.5;
+}
+}

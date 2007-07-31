@@ -1,0 +1,137 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<title>About A Bug</title>
+	<link rel="stylesheet" type="text/css" href="style.css" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+
+<body>	
+	<div class="cover">
+		<p class="author">Geoffrey Sneddon</p>
+		<h1>About A Bug</h1>
+	</div>
+	
+	<div class="imprint">
+		<div class="imprint-inner">
+			<p class="copyright">© 2007 Geoffrey Sneddon</p>
+			
+			<p class="availability">Digital versions of this document may be
+			  obtained from:<br />
+			  <a href="http://fbug.org/about-a-bug/">
+			    http://fbug.org/about-a-bug/
+			  </a></p>
+				
+			<div class="legal">
+				<p>This literary work (“Work”) is licensed under the Creative
+				  Commons Attribution-ShareAlike license version 3.0 or later
+				  (“License”). The license text is available from
+				  <a class="url" rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">
+				    http://creativecommons.org/licenses/by-sa/3.0/
+				  </a>.</p>
+			</div>
+		</div>
+	</div>
+	
+	<div class="toc">
+		<h2 id="toc" class="nonumber notoc">Contents</h2>
+		<?toc?>
+	</div>
+	
+	<h2 id="introduction" class="pagerestart">Introduction</h2>
+	
+	<p>So, we start with a near philosophical question: what is a bug?</p>
+	<ul id="basic-types">
+		<li>A flaw in software,</li>
+		<li>A feature request, or</li>
+		<li>Incorrect expectations on behalf of the user.</li>
+	</ul>
+	
+	<p>All three need to go through some process to get the bug resolved (as
+	  even the third category is likely to be a bug — albeit a user interface or
+	  documentation one), but what process should they go through? How
+	  minimalistic or complex should that process be? This document focuses on
+	  answering that by looking at what a bug is, and what process a bug goes
+	  through during its lifecycle.</p>
+	
+	<h3 id="motivation">Motivation</h3>
+	
+	<p>But why write such a document in the first place? What use will come out
+	  of it? Most current bug trackers go to one extreme or the other: either
+	  being extremely minimalistic or being extremely complex.</p>
+	
+	<h4 id="issues-end-user">Issues for the end user</h4>
+	
+	<p>While being extremely minimalistic can help usability, it can cause
+	  issues when done to the extreme of some bug trackers. From a developer
+	  point of view, you want three pieces of information 
+	  <a href="#ref-manipulate">[Manipulate]</a>:</p>
+	<ul>
+		<li>What the user did,</li>
+		<li>What the user expected, and</li>
+		<li>What actually happened.</li>
+	</ul>
+	
+	<p>If you do not require the user to provide all of this information, the
+	  result can be that the developer receives bug reports that say something
+	  like <q>UTF-8 websites don't work</q> even when they clearly do. This is
+	  helpful for neither the user nor the developer.</p>
+	
+	<p>However, being overly compelx can easily make the bug tracker a usability
+	  nightmare, thereby scaring users away (and reducing the number of bug
+	  reports, increasing the number of bugs in the software).</p>
+	
+	<h4 id="issues-developers">Issues for the developer</h4>
+	
+	<p>While the developer may be more tolerant of running complex software
+	  which needs documentation to be read to be used, there are still a number
+	  of issues:</p>
+	<ul>
+		<li>Reduced number of bug reports due to users being confused by the
+		  bug tracking software,</li>
+		<li>Undesirable bug reports causes by users being confused by the bug
+		  tracking software, and</li>
+		<li>Time consumed by the developer to learn how to use the bug tracker
+		  could be used for better uses (such as fixing bugs).</li>
+	</ul>
+	
+	<h2 id="needed-info">Needed Information For A Bug</h2>
+	
+	<p>There are <a href="#basic-types">three basic types</a> of a bug, each
+	  needing different pieces of information. We will look at each of these
+	  three types seperately.</p>
+	
+	<h3 id="needed-software-flaw">Software Flaw</h3>
+	
+	<p>This is the most basic type of bug, a flaw in the software itself (the
+	  only category which is truly a bug within the software). The information
+	  therefore needed is related to what the cause of the bug is:</p>
+	
+	<ul>
+		<li>Steps to reproduce the bug: As the hardest part of fixing a bug is 
+		  reproducing it and then understanding its cause.</li>
+		<li>The result of the bug: This can help refine the above, so the steps
+		  can be more specific to the cause of the bug.</li>
+	</ul>
+	
+	<p>The first of the two above is normally what takes the majority of the
+	  time to fix a bug. The latter can help create the former if it is missing
+	  (or improve upon it).</p>
+	
+	<h4 id="understanding-the-cause">Understanding The Cause</h4>
+	
+	<p>Understanding the cause of a bug is normally the most time consuming
+	  process of fixing a bug (although, obviously, there will be major bugs with
+	  which the time taken to fix the bug far exceeds the time taken to
+	  understand it). As the size of the source base increases, the time taken
+	  to understand a bug without being able to reliably reproduce it increases
+	  exponentially, thus placing a greater emphasis on the bug reporter giving
+	  sufficient detail. Even in a relatively small source base (around 10,000
+	  lines of code) it can become hard to find possible causes of a bug when you
+	  have multiple parts dependant on one another, as is the case in many software
+	  libraries.</p>
+	
+	<h2 class="nonumber" id="references">References</h2>
+	<?references?>
+</body>
+</html>
